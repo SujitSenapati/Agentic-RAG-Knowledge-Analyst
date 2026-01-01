@@ -233,49 +233,48 @@ All document ingestion, chunking, and embedding happens **offline** and is persi
 
 agentic-rag-knowledge-analyst/
 │
-├── prompts/                    # All LLM prompts (externalized)
-│   ├── planner.txt
-│   ├── reasoner.txt
-│   └── critic.txt
+├── prompts/ # All LLM prompts (externalized)
+│ ├── planner.txt
+│ ├── reasoner.txt
+│ └── critic.txt
 │
-├── data/                       # Curated source URLs
-│   ├── urls_k8s.txt
-│   ├── urls_incidents.txt
-│   ├── urls_policy.txt
-│   ├── urls_stackoverflow.txt
-│   ├── urls_openai_api.txt
-│   └── urls_github_issues.txt
+├── data/ # Curated source URLs
+│ ├── urls_k8s.txt
+│ ├── urls_incidents.txt
+│ ├── urls_policy.txt
+│ ├── urls_stackoverflow.txt
+│ ├── urls_openai_api.txt
+│ └── urls_github_issues.txt
 │
-├── vectorstores/               # Persistent Chroma vector stores
+├── vectorstores/ # Persistent Chroma vector stores
 │
 ├── app/
-│   ├── config.py               # Environment & configuration
-│   ├── llms.py                 # LLM initialization
-│   ├── chunking.py             # Text chunking strategy
-│   ├── ingestion.py            # Offline ingestion logic
-│   │
-│   ├── tools/                  # Capability-based tools
-│   │   ├── registry.py
-│   │   ├── retrieval_tools.py
-│   │   └── evidence.py
-│   │
-│   ├── agent/                  # Agent intelligence
-│   │   ├── planner.py
-│   │   ├── reasoner.py
-│   │   ├── critic.py
-│   │   └── agent_loop.py
-│   │
-│   └── ui/
-│       └── gradio_app.py       # User interface
+│ ├── config.py # Environment & configuration
+│ ├── llms.py # LLM initialization
+│ ├── chunking.py # Text chunking strategy
+│ ├── ingestion.py # Offline ingestion logic
+│ │
+│ ├── tools/ # Capability-based tools
+│ │ ├── registry.py
+│ │ ├── retrieval_tools.py
+│ │ └── evidence.py
+│ │
+│ ├── agent/ # Agent intelligence
+│ │ ├── planner.py
+│ │ ├── reasoner.py
+│ │ ├── critic.py
+│ │ └── agent_loop.py
+│ │
+│ └── ui/
+│ └── gradio_app.py # User interface
 │
 ├── scripts/
-│   └── ingest_all.py           # Offline ingestion runner
+│ └── ingest_all.py # Offline ingestion runner
 │
-├── tests/                      # Unit tests
+├── tests/ # Unit tests
 │
-├── run.py                      # Application entry point
+├── run.py # Application entry point
 └── requirements.txt
-
 ---
 
 ## Key Design Highlights
