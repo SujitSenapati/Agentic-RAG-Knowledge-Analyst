@@ -230,20 +230,6 @@ All document ingestion, chunking, and embedding happens **offline** and is persi
 ---
 
 ## Project Structure
-```md
-# Agentic RAG Knowledge Analyst
-
-## Core Principle
-
-**Ingestion is completely decoupled from runtime.**  
-The agent **never fetches or embeds documents during question answering**.  
-All document ingestion, chunking, and embedding happens **offline** and is persisted in vector stores.
-
----
-
-## Project Structure
-
-```
 
 agentic-rag-knowledge-analyst/
 │
@@ -290,8 +276,6 @@ agentic-rag-knowledge-analyst/
 ├── run.py                      # Application entry point
 └── requirements.txt
 
-````
-
 ---
 
 ## Key Design Highlights
@@ -319,8 +303,6 @@ agentic-rag-knowledge-analyst/
 ```bash
   python scripts/ingest_all.py
 ````
-
----
 
 ## 5. Critic vs Judge
 
