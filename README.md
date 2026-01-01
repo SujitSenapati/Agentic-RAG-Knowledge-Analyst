@@ -229,7 +229,7 @@ All document ingestion, chunking, and embedding happens **offline** and is persi
 
 ---
 
-## Project Structure
+### Project Structure
 
 agentic-rag-knowledge-analyst/
 │
@@ -275,9 +275,10 @@ agentic-rag-knowledge-analyst/
 │
 ├── run.py # Application entry point
 └── requirements.txt
+
 ---
 
-## Key Design Highlights
+### Key Design Highlights
 
 - **Offline ingestion only**  
   All documents are ingested, chunked, embedded, and stored ahead of time.
