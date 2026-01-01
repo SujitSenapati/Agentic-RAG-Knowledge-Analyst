@@ -231,6 +231,7 @@ All document ingestion, chunking, and embedding happens **offline** and is persi
 
 ### Project Structure
 
+```
 agentic-rag-knowledge-analyst/
 │
 ├── mkdocs.yml                    # MkDocs configuration (Material, mkdocstrings, Mermaid)
@@ -301,6 +302,7 @@ agentic-rag-knowledge-analyst/
 ├── requirements.txt              # Runtime dependencies
 └── .gitignore                    # Excludes venv, vectorstores, site/, __pycache__, etc.
 
+```
 ---
 
 ### Key Design Highlights
