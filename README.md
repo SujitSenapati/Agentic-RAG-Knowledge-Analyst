@@ -223,15 +223,36 @@ flowchart LR
 
 ### Core principle 
 
-> **Ingestion is completely decoupled from runtime.** > The agent never fetches or embeds documents during question answering. --- ## Project Structure
+**Ingestion is completely decoupled from runtime.**  
+The agent **never fetches or embeds documents during question answering**.  
+All document ingestion, chunking, and embedding happens **offline** and is persisted in vector stores.
+
+---
+
+## Project Structure
+```md
+# Agentic RAG Knowledge Analyst
+
+## Core Principle
+
+**Ingestion is completely decoupled from runtime.**  
+The agent **never fetches or embeds documents during question answering**.  
+All document ingestion, chunking, and embedding happens **offline** and is persisted in vector stores.
+
+---
+
+## Project Structure
+
+```
+
 agentic-rag-knowledge-analyst/
 │
-├── prompts/                 # All LLM prompts (externalized)
+├── prompts/                    # All LLM prompts (externalized)
 │   ├── planner.txt
 │   ├── reasoner.txt
 │   └── critic.txt
 │
-├── data/                    # Curated source URLs
+├── data/                       # Curated source URLs
 │   ├── urls_k8s.txt
 │   ├── urls_incidents.txt
 │   ├── urls_policy.txt
@@ -239,34 +260,65 @@ agentic-rag-knowledge-analyst/
 │   ├── urls_openai_api.txt
 │   └── urls_github_issues.txt
 │
-├── vectorstores/            # Persistent Chroma vector stores
+├── vectorstores/               # Persistent Chroma vector stores
 │
 ├── app/
-│   ├── config.py            # Environment & configuration
-│   ├── llms.py              # LLM initialization
-│   ├── chunking.py          # Text chunking strategy
-│   ├── ingestion.py         # Offline ingestion logic
-│
-│   ├── tools/               # Capability-based tools
+│   ├── config.py               # Environment & configuration
+│   ├── llms.py                 # LLM initialization
+│   ├── chunking.py             # Text chunking strategy
+│   ├── ingestion.py            # Offline ingestion logic
+│   │
+│   ├── tools/                  # Capability-based tools
 │   │   ├── registry.py
 │   │   ├── retrieval_tools.py
 │   │   └── evidence.py
-│
-│   ├── agent/               # Agent intelligence
+│   │
+│   ├── agent/                  # Agent intelligence
 │   │   ├── planner.py
 │   │   ├── reasoner.py
 │   │   ├── critic.py
 │   │   └── agent_loop.py
-│
+│   │
 │   └── ui/
-│       └── gradio_app.py    # User interface
+│       └── gradio_app.py       # User interface
 │
 ├── scripts/
-│   └── ingest_all.py        # Offline ingestion runner
+│   └── ingest_all.py           # Offline ingestion runner
 │
-├── tests/                   # Unit tests
-├── run.py                   # Application entry point
+├── tests/                      # Unit tests
+│
+├── run.py                      # Application entry point
 └── requirements.txt
+
+````
+
+---
+
+## Key Design Highlights
+
+- **Offline ingestion only**  
+  All documents are ingested, chunked, embedded, and stored ahead of time.
+
+- **Runtime is retrieval-only**  
+  The agent retrieves from pre-built vector stores and reasons over evidence.
+
+- **Prompt externalization**  
+  Planner, reasoner, and critic prompts are fully decoupled from code.
+
+- **Capability-based tooling**  
+  Tools are registered and invoked explicitly by the agent planner.
+
+- **Agentic loop architecture**  
+  Planner → Reasoner → Critic → Iterate (with evidence grounding).
+
+---
+
+## Entry Points
+
+- **Offline ingestion**
+```bash
+  python scripts/ingest_all.py
+````
 
 ---
 
