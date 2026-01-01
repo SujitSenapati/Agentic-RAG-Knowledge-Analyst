@@ -1,0 +1,9 @@
+https://stackoverflow.com/questions/tagged/kubernetes?tab=Votes
+https://stackoverflow.com/questions/tagged/python?tab=Votes
+https://stackoverflow.com/questions/tagged/rest?tab=Votes
+https://stackoverflow.com/questions/tagged/oauth-2.0?tab=Votes
+https://stackoverflow.com/questions/54861160/what-is-kubernetes-rbac-and-how-does-it-work
+https://stackoverflow.com/questions/45495126/what-is-the-difference-between-a-kubernetes-service-and-deployment
+https://openid.net/developers/how-connect-works/
+https://oauth.net/2/
+

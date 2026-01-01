@@ -1,0 +1,6 @@
+https://github.com/kubernetes/kubernetes/issues/100004
+https://github.com/kubernetes/kubernetes/issues/104821
+https://github.com/langchain-ai/langchain/issues/9337
+https://github.com/langchain-ai/langchain/issues/11319
+https://github.com/openai/openai-python/issues/487
+https://github.com/openai/openai-python/issues/640

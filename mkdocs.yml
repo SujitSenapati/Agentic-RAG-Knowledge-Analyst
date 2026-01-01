@@ -1,0 +1,36 @@
+site_name: Agentic RAG – Enterprise Knowledge Analyst
+site_description: Agentic RAG system documentation (API + architecture)
+site_url: https://sujitsenapati.github.io/agentic-rag-knowledge-analyst/
+theme:
+  name: material
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: true
+            show_signature_annotations: true
+            separate_signature: true
+            docstring_style: google
+
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - API:
+      - Agent Loop: api/agent_loop.md
+      - Planner: api/planner.md
+      - Reasoner: api/reasoner.md
+      - Critic: api/critic.md
+      - Judge: api/judge.md
+      - Tool Registry: api/registry.md
+      - Retrieval Tools: api/retrieval_tools.md
+      - Evidence: api/evidence.md
+      - Gradio App: api/gradio_app.md
+
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid

@@ -1,0 +1,23 @@
+You are refining a previous answer that did not meet quality standards.
+
+Original question:
+{question}
+
+Previous answer:
+{answer}
+
+Judge feedback:
+{judge_rationale}
+
+Evidence:
+{evidence}
+
+Instructions:
+- Improve grounding and accuracy
+- Address judge feedback explicitly
+- Add missing citations if needed
+- Do NOT introduce new facts
+- Use ONLY the provided evidence
+- Preserve clickable URLs
+
+Produce a revised answer.

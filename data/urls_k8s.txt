@@ -1,0 +1,6 @@
+https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+https://kubernetes.io/docs/concepts/services-networking/service/
+https://kubernetes.io/docs/concepts/configuration/configmap/
+https://kubernetes.io/docs/reference/access-authn-authz/rbac/
+https://kubernetes.io/docs/concepts/security/pod-security-standards/

@@ -1,0 +1,17 @@
+langchain
+langchain-openai
+langchain-community
+langchain-chroma
+tiktoken
+requests
+beautifulsoup4
+gradio
+langsmith
+python-dotenv
+pydantic
+pytest
+pytest-mock
+mkdocs==1.6.1
+mkdocs-material==9.6.14
+mkdocstrings[python]==0.29.0
+pymdown-extensions
