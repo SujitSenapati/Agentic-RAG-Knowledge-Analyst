@@ -233,48 +233,75 @@ All document ingestion, chunking, and embedding happens **offline** and is persi
 
 agentic-rag-knowledge-analyst/
 │
-├── prompts/ # All LLM prompts (externalized)
-│ ├── planner.txt
-│ ├── reasoner.txt
-│ └── critic.txt
+├── mkdocs.yml                   # MkDocs configuration (Material, mkdocstrings, Mermaid)
+├── README.md                    # Project overview, objectives, architecture, testing
 │
-├── data/ # Curated source URLs
-│ ├── urls_k8s.txt
-│ ├── urls_incidents.txt
-│ ├── urls_policy.txt
-│ ├── urls_stackoverflow.txt
-│ ├── urls_openai_api.txt
-│ └── urls_github_issues.txt
+├── prompts/                     # Externalized LLM prompts
+│   ├── planner.txt              # Intent detection, tool selection, clarification policy
+│   ├── reasoner.txt             # Evidence-grounded answer synthesis
+│   ├── critic.txt               # Grounding / logic verification + retry decision
+│   └── judge.txt                # LLM-as-judge scoring & approval (optional)
 │
-├── vectorstores/ # Persistent Chroma vector stores
+├── data/                        # Curated source URL lists (offline ingestion inputs)
+│   ├── urls_k8s.txt
+│   ├── urls_incidents.txt
+│   ├── urls_policy.txt
+│   ├── urls_stackoverflow.txt
+│   ├── urls_openai_api.txt
+│   └── urls_github_issues.txt
+│
+├── vectorstores/                # Persistent vector databases (read-only at runtime)
+│   ├── k8s/
+│   ├── incidents/
+│   ├── policy/
+│   ├── stackoverflow/
+│   ├── openai_api/
+│   └── github_issues/
+│
+├── docs/                        # MkDocs documentation source
+│   ├── index.md                 # Documentation home
+│   ├── architecture.md          # System architecture + Mermaid diagrams
 │
 ├── app/
-│ ├── config.py # Environment & configuration
-│ ├── llms.py # LLM initialization
-│ ├── chunking.py # Text chunking strategy
-│ ├── ingestion.py # Offline ingestion logic
-│ │
-│ ├── tools/ # Capability-based tools
-│ │ ├── registry.py
-│ │ ├── retrieval_tools.py
-│ │ └── evidence.py
-│ │
-│ ├── agent/ # Agent intelligence
-│ │ ├── planner.py
-│ │ ├── reasoner.py
-│ │ ├── critic.py
-│ │ └── agent_loop.py
-│ │
-│ └── ui/
-│ └── gradio_app.py # User interface
+│   ├── __init__.py
+│   │
+│   ├── config.py                # Environment variables & paths
+│   ├── llms.py                  # LLM client initialization (fast / reasoning models)
+│   ├── chunking.py              # Chunking & overlap strategy
+│   ├── ingestion.py             # Offline ingestion (fetch, clean, embed, persist)
+│   │
+│   ├── tools/                   # Capability-driven retrieval layer
+│   │   ├── __init__.py
+│   │   ├── registry.py          # Tool registration & discovery
+│   │   ├── retrieval_tools.py   # Vector-store backed retrieval tools
+│   │   └── evidence.py          # Evidence formatting & deduplication
+│   │
+│   ├── agent/                   # Agent intelligence & control flow
+│   │   ├── __init__.py
+│   │   ├── planner.py           # Intent analysis, tool selection, clarification
+│   │   ├── reasoner.py          # Evidence-grounded reasoning
+│   │   ├── critic.py            # Grounding verification & retry trigger
+│   │   ├── judge.py             # LLM-as-judge approval / scoring
+│   │   └── agent_loop.py        # Planner → tools → reasoner → critic → judge loop
+│   │
+│   └── ui/
+│       ├── __init__.py
+│       └── gradio_app.py        # Gradio UI + agent trace display
 │
 ├── scripts/
-│ └── ingest_all.py # Offline ingestion runner
+│   └── ingest_all.py            # Batch ingestion runner (offline only)
 │
-├── tests/ # Unit tests
+├── tests/                       # Pytest-based test suite
+│   ├── conftest.py              # Tool registration & shared fixtures
+│   ├── test_planner.py          # Planner behavior & clarification tests
+│   ├── test_agent_loop.py       # End-to-end agent execution tests
+│   ├── test_critic.py           # Critic grounding & retry logic tests
+│   └── test_judge.py            # Judge approval / rejection tests
 │
-├── run.py # Application entry point
-└── requirements.txt
+├── run.py                       # Application entry point (starts Gradio UI)
+├── requirements.txt             # Runtime dependencies
+└── .gitignore                   # Excludes venv, vectorstores, site/, __pycache__, etc.
+
 
 ---
 
