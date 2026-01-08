@@ -1,5 +1,7 @@
 # Agentic RAG – Enterprise Knowledge Analyst
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/SujitSenapati/Agentic-RAG-Knowledge-Analyst)
+
 ## Overview
 
 This project implements an **Agentic Retrieval-Augmented Generation (RAG)** system that behaves like an **Enterprise Knowledge Analyst**.
@@ -226,6 +228,91 @@ flowchart LR
 **Ingestion is completely decoupled from runtime.**  
 The agent **never fetches or embeds documents during question answering**.  
 All document ingestion, chunking, and embedding happens **offline** and is persisted in vector stores.
+
+---
+
+## Getting Started
+
+### Option 1: GitHub Codespaces (Recommended)
+
+The fastest way to get started is using GitHub Codespaces:
+
+1. Click the **"Open in GitHub Codespaces"** badge at the top of this README
+2. Wait for the environment to initialize (installs Python 3.11 and all dependencies automatically)
+3. Create your `.env` file:
+   ```bash
+   cp .env.template .env
+   ```
+4. Edit `.env` and add your `OPENAI_API_KEY`
+5. Run the application:
+   ```bash
+   python run.py
+   ```
+6. Click the notification to open the Gradio UI (port 7860 is auto-forwarded)
+
+See [.devcontainer/README.md](.devcontainer/README.md) for detailed Codespaces setup information.
+
+### Option 2: Local Setup
+
+**Prerequisites:**
+- Python 3.11 or higher
+- pip
+
+**Steps:**
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd Agentic-RAG-Knowledge-Analyst
+   ```
+
+2. Create and activate a virtual environment:
+   ```bash
+   # Windows
+   python -m venv .venv
+   .venv\Scripts\activate
+   
+   # macOS/Linux
+   python -m venv .venv
+   source .venv/bin/activate
+   ```
+
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Set up environment variables:
+   ```bash
+   cp .env.template .env
+   # Edit .env and add your OPENAI_API_KEY
+   ```
+
+5. (Optional) Re-ingest data if you want to update vector stores:
+   ```bash
+   python scripts/ingest_all.py
+   ```
+
+6. Run the application:
+   ```bash
+   python run.py
+   ```
+
+7. Open your browser to `http://localhost:7860`
+
+### Running Tests
+
+```bash
+pytest -v
+```
+
+### Building Documentation
+
+```bash
+mkdocs serve
+```
+
+The documentation will be available at `http://localhost:8000`.
 
 ---
 

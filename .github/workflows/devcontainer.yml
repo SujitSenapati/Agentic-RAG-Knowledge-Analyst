@@ -1,0 +1,30 @@
+name: Devcontainer CI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.devcontainer/**'
+      - 'requirements.txt'
+      - 'pyproject.toml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '.devcontainer/**'
+      - 'requirements.txt'
+      - 'pyproject.toml'
+
+jobs:
+  test-devcontainer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build and test devcontainer
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            python --version
+            pip --version
+            pytest --version || echo "pytest not found (expected if not in requirements.txt)"

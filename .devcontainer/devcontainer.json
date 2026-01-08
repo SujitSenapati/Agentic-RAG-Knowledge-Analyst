@@ -1,0 +1,66 @@
+{
+  "name": "Agentic RAG Knowledge Analyst",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
+  
+  // Configure tool-specific properties
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": false,
+        "python.formatting.provider": "black",
+        "python.testing.pytestEnabled": true,
+        "python.testing.unittestEnabled": false,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": true
+        }
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.black-formatter",
+        "ms-toolsai.jupyter",
+        "charliermarsh.ruff",
+        "GitHub.copilot",
+        "GitHub.copilot-chat"
+      ]
+    }
+  },
+
+  // Forward Gradio default port
+  "forwardPorts": [7860],
+  "portsAttributes": {
+    "7860": {
+      "label": "Gradio UI",
+      "onAutoForward": "notify"
+    }
+  },
+
+  // Use 'postCreateCommand' to run commands after the container is created
+  "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt && bash .devcontainer/setup.sh",
+
+  // Use 'postAttachCommand' to run commands after attaching to the container
+  "postAttachCommand": {
+    "server": "echo '✨ Welcome to Agentic RAG Knowledge Analyst! ✨' && echo 'Run: python run.py to start the application'"
+  },
+
+  // Set environment variables
+  "remoteEnv": {
+    "PYTHONPATH": "/workspaces/${localWorkspaceFolderBasename}"
+  },
+
+  // Features to add to the dev container
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true
+    }
+  },
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root
+  // "remoteUser": "root"
+  "remoteUser": "vscode"
+}
