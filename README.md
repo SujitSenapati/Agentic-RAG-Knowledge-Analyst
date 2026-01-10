@@ -68,9 +68,10 @@ This conceptual architecture **remains valid** and continues to guide the implem
 
 ```mermaid
 flowchart TD
-  U[User] --> UI[Gradio UI]
-  UI --> A[Agent Loop]
+  U[User] --> UI[Next.js Frontend]
+  UI --> API[FastAPI Backend]
 
+  API --> A[Agent Loop]
   A --> P[Planner]
   P -->|plan: intent, tools, clarification| A
 
@@ -90,9 +91,10 @@ flowchart TD
   C -->|Refine if needed| RS
 
   RS --> J[LLM Judge]
-  J -->|Approve| UI
+  J -->|Approve| API
   J -->|Retry once| RS
 
+  API -->|JSON Response| UI
   A -. traces .-> LS[LangSmith]
 ```
 
@@ -127,8 +129,9 @@ flowchart LR
   %% ------------------------
   subgraph Online["Online Agent Runtime"]
 
-      User[User] --> UI[Gradio UI]
-      UI --> A[Agent Loop]
+      User[User] --> UI[Next.js Frontend]
+      UI --> API[FastAPI Backend]
+      API --> A[Agent Loop]
 
       A --> P[Planner]
       P -->|Select tools| TR[Tool Registry]
@@ -152,8 +155,10 @@ flowchart LR
       RS --> ANS[Grounded Answer + Citations]
 
       ANS --> C[Critic / Verifier]
-      C -->|OK| UI
+      C -->|OK| API
       C -->|Retry / Refine| A
+      
+      API -->|JSON| UI
 
       A -. traces .-> LS[LangSmith Tracing]
   end
@@ -221,7 +226,8 @@ flowchart LR
 | Critic           | Logical consistency & reasoning gaps            |
 | Judge            | Quality, grounding & completeness evaluation    |
 | Auto-Retry       | One controlled self-correction loop             |
-| UI               | Display answer and trace                        |
+| FastAPI          | REST API for frontend communication             |
+| Next.js Frontend | Modern React UI with TypeScript & Tailwind      |
 
 ### Core principle 
 
@@ -293,10 +299,35 @@ See [.devcontainer/README.md](.devcontainer/README.md) for detailed Codespaces s
    python scripts/ingest_all.py
    ```
 
-6. Run the application:
+6. Run the backend API server:
    ```bash
-   python run.py
+   python run_api.py
    ```
+   The API will be available at http://localhost:8000
+
+7. In a separate terminal, set up and run the frontend:
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+   The frontend will be available at http://localhost:3000
+
+### Frontend Architecture
+
+The new UI is built with:
+- **Next.js 14** - React framework with App Router
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Modern utility-first styling
+- **React Markdown** - Rich answer rendering
+
+### Backend API
+
+The Python backend now exposes a FastAPI REST API instead of Gradio:
+- **Endpoint**: `POST /api/ask`
+- **Request**: `{"question": "your question here"}`
+- **Response**: `{"answer": "...", "trace": {...}}`
+- **Interactive docs**: http://localhost:8000/docs
 
 7. Open your browser to `http://localhost:7860`
 

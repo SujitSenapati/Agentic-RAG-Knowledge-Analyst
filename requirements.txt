@@ -5,7 +5,8 @@ langchain-chroma
 tiktoken
 requests
 beautifulsoup4
-gradio
+fastapi
+uvicorn[standard]
 langsmith
 python-dotenv
 pydantic
